@@ -7,9 +7,13 @@ Ctrl+Shift+P
 
 ```
 pcar 
-press Enter
-put https://github.com/arthurfait/Franca-IDL-syntax-higlight-st3.git to the Repository URL
 ```
+
+![add](/install/add.png?raw=true)
+
+put https://github.com/arthurfait/Franca-IDL-syntax-higlight-st3.git to the Repository URL
+
+![url](/install/url.png?raw=true)
 
 Ctrl+Shift+P
 ```
