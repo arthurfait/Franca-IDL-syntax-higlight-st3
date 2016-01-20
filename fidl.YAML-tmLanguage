@@ -64,13 +64,19 @@ repository:
     - include: '#lex-keyword'
     - include: '#lex-constant'
     - include: '#lex-string'
+    - include: '#lex-function'
 
   lex-constant:
     patterns:
     - match: \b(NULL|true|false|TRUE|FALSE)\b
       captures:
         '1': {name: constant.language.fidl}
-
+  
+  lex-function:
+    patterns:
+    - match: \s*\b(method|broadcast)*\b \{*\b\}
+    captures:
+      "1": {name: entity.name.function.fidl }
 
   lex-keyword:
     patterns:

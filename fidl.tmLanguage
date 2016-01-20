@@ -133,6 +133,10 @@
 					<key>include</key>
 					<string>#lex-string</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#lex-function</string>
+				</dict>
 			</array>
 		</dict>
 		<key>lex-constant</key>
@@ -172,6 +176,24 @@
 			<string>(\\)(?:$\n?|(\s+?)(?=\n)$)</string>
 			<key>name</key>
 			<string>punctuation.separator.continuation.fidl</string>
+		</dict>
+		<key>lex-function</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.fidl</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\s*\b(method|broadcast)*\b \{*\b\}</string>
+				</dict>
+			</array>
 		</dict>
 		<key>lex-keyword</key>
 		<dict>
