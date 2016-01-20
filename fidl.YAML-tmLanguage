@@ -3,11 +3,15 @@
 name: Franca IDL
 scopeName: source.fidl
 fileTypes: [fdl,fidl]
+foldingStartMarker: \{
+foldingStopMarker: \}
 uuid: 7b6518cc-e0eb-4d96-bd61-5493816e0279
+
 
 patterns:
 - include: '#comments'
 - include: '#lex'
+- include: '#lex-function'
 
 repository:
 
@@ -64,7 +68,6 @@ repository:
     - include: '#lex-keyword'
     - include: '#lex-constant'
     - include: '#lex-string'
-    - include: '#lex-function'
 
   lex-constant:
     patterns:
@@ -74,22 +77,22 @@ repository:
   
   lex-function:
     patterns:
-    - match: \s*\b(method|broadcast)*\b \{*\b\}
-    captures:
-      "1": {name: entity.name.function.fidl }
-
+    - match: (\s*\b(method|broadcast)\b\s*)(.*)(\s*\{)
+      captures:
+        "3": {name: entity.name.function.source.fidl }
+      
   lex-keyword:
     patterns:
     - match: \s*\b(sizeof|(?:__|(?!\w+__))typeof(?:__)?)\b
       captures:
         '1': {name: keyword.operator.fidl}
-    - match: \s*\b((?:__|(?!\w+__))asm(?:__)?|version|attribute|method|in|out|broadcast|selective|import|model|error|typedef|is)\b
+    - match: \s*\b(version|attribute|method|in|out|broadcast|selective|import|model|error|typedef|is)\b
       captures:
         '1': {name: keyword.control.fidl}
-    - match: \s*\b(Int8|Int16|Int32|UInt8|UInt16|UInt32|UInt64|Int64|Boolean|String|major|Double|Float|minor|int|readonly|short|signed|unsigned|void)\b
+    - match: \s*\b(Int8|Int16|Int32|UInt8|UInt16|UInt32|UInt64|Int64|Boolean|String|major|Double|Float|minor|readonly)\b
       captures:
         '1': {name: storage.type.fidl}
-    - match: \s*\b(extern|static|register|__attribute__|(?:__|(?!\w+__))(?:const|restrict|volatile|inline)(?:__)?)\b
+    - match: \s*\b(extern|static|register)\b
       captures:
         '1': {name: storage.modifier.fidl}
     - match: \s*\b(interface|struct|union|enumeration|package|typeCollection)\b

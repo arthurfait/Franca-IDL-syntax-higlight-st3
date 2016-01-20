@@ -7,6 +7,10 @@
 		<string>fdl</string>
 		<string>fidl</string>
 	</array>
+	<key>foldingStartMarker</key>
+	<string>\{</string>
+	<key>foldingStopMarker</key>
+	<string>\}</string>
 	<key>name</key>
 	<string>Franca IDL</string>
 	<key>patterns</key>
@@ -18,6 +22,10 @@
 		<dict>
 			<key>include</key>
 			<string>#lex</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#lex-function</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -133,10 +141,6 @@
 					<key>include</key>
 					<string>#lex-string</string>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>#lex-function</string>
-				</dict>
 			</array>
 		</dict>
 		<key>lex-constant</key>
@@ -179,19 +183,19 @@
 		</dict>
 		<key>lex-function</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.fidl</string>
-				</dict>
-			</dict>
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.source.fidl</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>\s*\b(method|broadcast)*\b \{*\b\}</string>
+					<string>(\s*\b(method|broadcast)\b\s*)(.*)(\s*\{)</string>
 				</dict>
 			</array>
 		</dict>
@@ -221,7 +225,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\s*\b((?:__|(?!\w+__))asm(?:__)?|version|attribute|method|in|out|broadcast|selective|import|model|error|typedef|is)\b</string>
+					<string>\s*\b(version|attribute|method|in|out|broadcast|selective|import|model|error|typedef|is)\b</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -233,7 +237,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\s*\b(Int8|Int16|Int32|UInt8|UInt16|UInt32|UInt64|Int64|Boolean|String|major|Double|Float|minor|int|readonly|short|signed|unsigned|void)\b</string>
+					<string>\s*\b(Int8|Int16|Int32|UInt8|UInt16|UInt32|UInt64|Int64|Boolean|String|major|Double|Float|minor|readonly)\b</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -245,7 +249,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\s*\b(extern|static|register|__attribute__|(?:__|(?!\w+__))(?:const|restrict|volatile|inline)(?:__)?)\b</string>
+					<string>\s*\b(extern|static|register)\b</string>
 				</dict>
 				<dict>
 					<key>captures</key>
